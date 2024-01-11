@@ -2,7 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 100px 0;
+    padding: 200px 0 100px 0;
+    position: relative;
 }
 
 .cta-section .container{
@@ -47,6 +48,15 @@
 .container .sign-up-btn:hover{
     color: #3882f6;
     background: white;
+}
+
+.cta-section img{
+    position: absolute;
+    top: 0;
+    left: -3px;
+    width: 110%;
+    transform: rotate(180deg);
+    z-index: -1;
 }
 
 /*footer*/
