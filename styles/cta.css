@@ -1,0 +1,59 @@
+.cta-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 0;
+}
+
+.cta-section .container{
+    width: 50%;
+    background: #3882f6;
+    display: flex;
+    padding: 40px 80px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,0.15);
+    color: white;
+    justify-content: space-between;
+}
+
+.container div p{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.container div h6{
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.btn-div{
+    display: flex;
+}
+
+.container .sign-up-btn{
+    background: transparent;
+    border: 1px solid white;
+    font-size: 14px;
+    align-self: flex-end;
+    padding: 10px 60px;
+    color: white;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: 0.75s;
+    box-shadow: 0 0 1px 1px rgba(255,255,255,0.15);
+    cursor: pointer;
+}
+
+.container .sign-up-btn:hover{
+    color: #3882f6;
+    background: white;
+}
+
+/*footer*/
+.footer{
+    text-align: center;
+    background: #1f2937;
+    color: white;
+    padding: 40px 0;
+}
+
