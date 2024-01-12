@@ -4,6 +4,7 @@
     justify-content: center;
     padding: 200px 0 100px 0;
     position: relative;
+    overflow-x: hidden;
 }
 
 .cta-section .container{
@@ -54,7 +55,7 @@
     position: absolute;
     top: 0;
     left: -3px;
-    width: 110%;
+    width: 101vw;
     transform: rotate(180deg);
     z-index: -1;
 }

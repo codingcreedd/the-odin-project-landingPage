@@ -4,6 +4,14 @@
     padding: 0 200px 130px 200px;
     background: #e5e7eb;
     position: relative;
+    overflow-x: hidden;
+}
+
+.info-section .waves{
+    position: absolute;
+    bottom: 0;
+    left: -3px;
+    width: 101vw;
 }
 
 .info-section p{
@@ -75,21 +83,14 @@
 
 /*quote section*/
 .quote-section{
-    width: 100%;
+    width: 100vw;
     background: #1f2937;
     color: var(--sign-up-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 100px 0 140px 0;
+    padding: 70px 0 140px 0;
     position: relative;
-}
-
-.quote-section img{
-    position: absolute;
-    top: -200px;
-    left: -3px;
-    width: 110%;
 }
 
 .quote-section div{
