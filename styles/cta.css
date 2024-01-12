@@ -8,7 +8,7 @@
 
 .cta-section .container{
     width: 50%;
-    background: #3882f6;
+    background: var(--sign-up-color);
     display: flex;
     padding: 40px 80px;
     border-radius: 10px;
@@ -18,13 +18,13 @@
 }
 
 .container div p{
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 700;
 }
 
 .container div h6{
     font-weight: 500;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .btn-div{
@@ -34,7 +34,7 @@
 .container .sign-up-btn{
     background: transparent;
     border: 1px solid white;
-    font-size: 14px;
+    font-size: 0.875rem;
     align-self: flex-end;
     padding: 10px 60px;
     color: white;
@@ -46,7 +46,7 @@
 }
 
 .container .sign-up-btn:hover{
-    color: #3882f6;
+    color: var(--sign-up-color);
     background: white;
 }
 
@@ -62,7 +62,7 @@
 /*footer*/
 .footer{
     text-align: center;
-    background: #1f2937;
+    background: var(--primary-color);
     color: white;
     padding: 40px 0;
 }

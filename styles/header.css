@@ -1,7 +1,7 @@
 .header-section{
     width: 100%;
     color: white;
-    background: #1f2937;
+    background: var(--primary-color);
     padding-bottom: 120px;
 }
 
@@ -29,7 +29,7 @@
     display: flex;
     list-style: none;
     gap: 75px;
-    font-size: 15px;
+    font-size: 0.938rem;
 }
 
 .main-header ul li{cursor: pointer;}
@@ -72,7 +72,7 @@
 }
 
 .header-info div h3{
-    font-size: 48px;
+    font-size: 3rem;
     color: #F9FAF8;
     font-weight: 900;
     width: 500px;
@@ -80,7 +80,7 @@
 
 .header-info div p{
     margin-top: 20px;
-    font-size: 18px;
+    font-size: 1.125rem;
     color: #e5e7eb;
     width: 600px;
 }
@@ -91,7 +91,7 @@
     border: none;
     border-radius: 5px;
     padding: 12px 30px;
-    background: #3882F6;
+    background: var(--sign-up-color);
     color: white;
     font-weight: 600;
     box-shadow: 0 0 5px 3px rgba(0,0,0,0.15);
@@ -116,5 +116,5 @@
 }
 
 .custom-shape-divider-top-1704929021 .shape-fill {
-    fill: #1F2937;
+    fill: var(--primary-color);
 }
