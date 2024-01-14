@@ -24,17 +24,25 @@
         <div class="form-div">
             <nav>
                 <button class="register">Sign up</button>
-                <button class="sign-in">Sign in</button>
+                <button class="log-in">Log in</button>
             </nav>
 
             <div class="signup-form">
                 <form action="" method="" onsubmit="return validateForm()" novalidate>
                     <input type="text" placeholder="Full name" name="full_name" id="full_name" required>
+                    <span class="warning name_warning" style="display: none;"></span>
+
                     <input type="email" placeholder="Email" name="email" id="email" required>
+                    <span class="warning email_warning" style="display: none;"></span>
+
                     <input type="text" placeholder="Username" name="username" id="username" required>
+                    <span class="warning username_warning" style="display: none;"></span>
+
                     <input type="password" placeholder="Password" name="password" id="password" required>
+                    <span class="warning password_warning" style="display: none;"></span>
 
                     <input type="password" placeholder="Confirm Password" name="confirm_password" id="confirm_password" required>
+                    <span class="warning confirm_pass_warning" style="display: none;"></span>
 
                     <p>
                         By creating an account, you agree to our <span>terms of service</span> and <span>privacy policy</span>. We prioritize the security 

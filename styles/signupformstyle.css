@@ -99,12 +99,24 @@ body{
 }
 
 .right-section nav button{
-    margin-left: -5px;
     border: none;
     padding: 10px 20px;
     font-weight: 500;
     font-size: 1rem;
     background: transparent;
+    transition: 0.5s ease;
+}
+
+.right-section nav .toggle-btn,
+.right-section nav .toggle-btn:hover {
+    border: 2px solid var(--primary-color);
+}
+.right-section nav button:hover{
+    border: 2px solid var(--primary-color);
+}
+
+.toggle-btn{
+    border: 2px solid var(--primary-color);
 }
 
 /*---------------SIGN UP FORM--------------------*/
@@ -128,6 +140,7 @@ body{
     color: black;
     font-size: 0.8rem;
     font-weight: bold;
+    transition: 0.5s ease;
 }
 
 * input:focus{
@@ -158,4 +171,15 @@ body{
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
+}
+
+
+/*VALIDATION*/
+.warning,
+.name-warning,
+.email-warning,
+.username-warning,
+.password-warning{
+    font-size: 0.8rem;
+    color: red;
 }
