@@ -56,10 +56,16 @@ const confirmPassInput = document.querySelector('#confirm_password');
 
 
 let validationBoolean = true;
+let validateFields, validateName, b3, b4, b5;
 
 function validateForm(){
     checkForEmptyFields();
     validateFullName();
+
+    if(validateFields && validateName)
+        validationBoolean = true;
+    else 
+        validationBoolean = false;
 
     return validationBoolean;
 }
@@ -67,8 +73,12 @@ function validateForm(){
 function checkForEmptyFields(){
     inputs.forEach(input => {
         if(input.value === ''){
-            validationBoolean = false;
+            validateFields = false;
             changeInputField(input);
+        }
+        else
+        {
+            validateFields = true
         }
     });
 }
@@ -130,18 +140,20 @@ function validateFullName(){
     const fullNameString = String(fullNameInput.value);
 
     if(fullNameString.length < 3 && fullNameString.length >= 1){
-        validationBoolean = false;
+        validateName = false;
         nameWarning.innerText = 'Name must be at least 3 characters long.'
         nameWarning.style.display = 'block';
         fullNameInput.style.cssText = 'border: 1px solid red;';
     }
     else if(!(isAlphabetic(fullNameString)) && fullNameString.length >= 1)
     {
-        validationBoolean = false;
+        validateName = false;
         nameWarning.innerText = 'Name must contain characters only.';
         nameWarning.style.display = 'block';
         fullNameInput.style.cssText = 'border: 1px solid red;';
     }
+    else
+        validateName = true;
     
 
 }
