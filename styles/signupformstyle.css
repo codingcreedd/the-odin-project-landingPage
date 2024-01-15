@@ -38,8 +38,8 @@ body{
 
 .left-section .logo{
     position: absolute;
-    top: 10%;
-    left: 13%;
+    top: 18%;
+    left: 8%;
     width: 30%;
     height: 30%;
     object-fit: contain;
@@ -104,13 +104,14 @@ body{
     font-weight: 500;
     font-size: 1rem;
     background: transparent;
-    transition: 0.5s ease;
 }
 
-.right-section nav .toggle-btn,
-.right-section nav .toggle-btn:hover {
-    border: 2px solid var(--primary-color);
+
+
+.right-section nav .toggle-btn{
+    border-bottom: 2px solid var(--primary-color);
 }
+
 .right-section nav button:hover{
     border: 2px solid var(--primary-color);
 }
@@ -141,6 +142,10 @@ body{
     font-size: 0.8rem;
     font-weight: bold;
     transition: 0.5s ease;
+}
+
+.signup-form form > input:hover{
+    transform: translateY(-3px);
 }
 
 * input:focus{
