@@ -3,8 +3,6 @@ gsap.to(jsLogo, {x: 20, y:-20, repeat: -1, duration: 1, yoyo:true, ease: "elasti
 
 //FORM PAGE-----------------------------------------------------//
 
-
-
 const signUpOption = document.querySelector('.register');
 const logInOption = document.querySelector('.log-in');
 const signUpForm = document.querySelector('.signup-form');
@@ -118,20 +116,20 @@ function changeInputField(input){
 function removeWarning(input){
     if(input.id === 'full_name'){
         nameWarning.style.display = 'none';
-        input.style.cssText = "border: none";
+        input.style.cssText = "border: 1px solid var(--primary-color)";
     }
     else if(input.id === 'email'){
         emailWarning.style.display = 'none';
-        input.style.cssText = "border: none";
+        input.style.cssText = "border: 1px solid var(--primary-color)";
     }else if(input.id === 'username'){
         usernameWarning.style.display = 'none';
-        input.style.cssText = "border: none";
+        input.style.cssText = "border: 1px solid var(--primary-color)";
     }else if(input.id === 'password'){
         passwordWarning.style.display = 'none';
-        input.style.cssText = "border: none";
+        input.style.cssText = "border: 1px solid var(--primary-color)";
     }else if(input.id === 'confirm_password'){
             confirmPassWarning.style.display = 'none';
-            input.style.cssText = "border: none";
+            input.style.cssText = "border: 1px solid var(--primary-color)";
     }
 }
 
