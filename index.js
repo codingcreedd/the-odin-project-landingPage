@@ -1,15 +1,24 @@
 const jsLogo = document.querySelector('.js-svg');
-const movementPath = document.querySelector('#movementPath')
 gsap.to(jsLogo, {x: 20, y:-20, repeat: -1, duration: 1, yoyo:true, ease: "elastic"});
+
+//FORM PAGE-----------------------------------------------------//
+
+
 
 const signUpOption = document.querySelector('.register');
 const logInOption = document.querySelector('.log-in');
+const signUpForm = document.querySelector('.signup-form');
+const logInForm = document.querySelector('.login-form');
+
+signUpOption.classList.add('toggle-btn');
 
 signUpOption.addEventListener('click', () => {
     if(!signUpOption.classList.contains('toggle-btn'))
     {
         logInOption.classList.remove('toggle-btn');
         signUpOption.classList.add('toggle-btn');
+        signUpForm.style.display = 'block';
+        logInForm.style.display = 'none';
     }
 });
 
@@ -18,6 +27,8 @@ logInOption.addEventListener('click', () => {
     {
         signUpOption.classList.remove('toggle-btn');
         logInOption.classList.add('toggle-btn');
+        signUpForm.style.display = 'none';
+        logInForm.style.display = 'block';
     }
 });
 
@@ -36,11 +47,19 @@ const usernameWarning = document.querySelector('.username_warning');
 const passwordWarning = document.querySelector('.password_warning');
 const confirmPassWarning = document.querySelector('.confirm_pass_warning')
 
-let validationBoolean = false;
+//Inputs
+const fullNameInput = document.querySelector('#full_name');
+const emailInput = document.querySelector('#email');
+const usernameInput = document.querySelector('#username');
+const passwordInput = document.querySelector('#password');
+const confirmPassInput = document.querySelector('#confirm_password');
+
+
+let validationBoolean = true;
 
 function validateForm(){
     checkForEmptyFields();
-
+    validateFullName();
 
     return validationBoolean;
 }
@@ -48,6 +67,7 @@ function validateForm(){
 function checkForEmptyFields(){
     inputs.forEach(input => {
         if(input.value === ''){
+            validationBoolean = false;
             changeInputField(input);
         }
     });
@@ -105,4 +125,86 @@ function removeWarning(input){
     }
 }
 
+//FULL NAME VALIDATION
+function validateFullName(){
+    const fullNameString = String(fullNameInput.value);
 
+    if(fullNameString.length < 3 && fullNameString.length >= 1){
+        validationBoolean = false;
+        nameWarning.innerText = 'Name must be at least 3 characters long.'
+        nameWarning.style.display = 'block';
+        fullNameInput.style.cssText = 'border: 1px solid red;';
+    }
+    else if(!(isAlphabetic(fullNameString)) && fullNameString.length >= 1)
+    {
+        validationBoolean = false;
+        nameWarning.innerText = 'Name must contain characters only.';
+        nameWarning.style.display = 'block';
+        fullNameInput.style.cssText = 'border: 1px solid red;';
+    }
+    
+
+}
+
+function isAlphabetic(inputString) {
+    let b = true;
+
+    fixWhiteSpaces(inputString);
+
+    //check for numbers and special characters
+    for(let i = 0; i < inputString.length; i++)
+    {
+        if(isNumber(inputString[i]) || isSpecialCharacter(inputString[i])){
+            b = false;
+        }
+        else
+        {
+            b = true;
+        }
+    }
+
+    return b;
+}
+
+function isSpecialCharacter(char) {
+    const specialCharacterRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
+    return specialCharacterRegex.test(char);
+}
+
+function isNumber(char) {
+    return !isNaN(Number(char));
+}
+
+function isWhitespace(char) {
+    return /\s/.test(char);
+}
+
+function fixWhiteSpaces(inputString)
+{
+    //Trim the name
+    inputString = inputString.trim();
+    fullNameInput.value = inputString;
+
+    //Keep only one space between words
+    let whiteSpaceCount = 0;
+    let modifiedString = '';
+    for(let i = 0; i < inputString.length; i++)
+    {
+        if(!isWhitespace(inputString[i])){
+            whiteSpaceCount = 0;
+            modifiedString += inputString[i];
+        }
+
+        if(whiteSpaceCount >= 1)
+            continue;  
+
+        if(isWhitespace(inputString[i]) && whiteSpaceCount < 1){
+            whiteSpaceCount++;
+            modifiedString += inputString[i];
+        }
+
+    }
+
+    inputString = modifiedString;
+    fullNameInput.value = inputString;
+}
