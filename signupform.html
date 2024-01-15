@@ -29,16 +29,16 @@
 
             <div class="signup-form">
                 <form action="" method="" onsubmit="return validateForm()" novalidate>
-                    <input type="text" placeholder="Full name" name="full_name" id="full_name" required>
+                    <input type="text" placeholder="Full name" name="full_name" id="full_name" required maxlength="25">
                     <span class="warning name_warning" style="display: none;"></span>
 
                     <input type="email" placeholder="Email" name="email" id="email" required>
                     <span class="warning email_warning" style="display: none;"></span>
 
-                    <input type="text" placeholder="Username" name="username" id="username" required>
+                    <input type="text" placeholder="Username" name="username" id="username" required maxlength="40">
                     <span class="warning username_warning" style="display: none;"></span>
 
-                    <input type="password" placeholder="Password" name="password" id="password" required>
+                    <input type="password" placeholder="Password" name="password" id="password" required minlength="8">
                     <span class="warning password_warning" style="display: none;"></span>
 
                     <input type="password" placeholder="Confirm Password" name="confirm_password" id="confirm_password" required>
@@ -53,6 +53,10 @@
                     <button type="submit">Create Account</button>
 
                 </form>
+            </div>
+
+            <div class="login-form" style="display: none;">
+
             </div>
         </div>
     </div>
