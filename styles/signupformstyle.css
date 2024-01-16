@@ -195,15 +195,18 @@ body{
 
 
 /*VALIDATION*/
-.name-warning,
-.email-warning,
-.username-warning,
-.password-warning{
+.name_warning,
+.email_warning,
+.username_warning,
+.password_warning,
+.emaillogin_warning,
+.passwordlogin_warning,
+.confirm_pass_warning{
     font-size: 0.8rem;
     color: red;
 }
 
-.login-form .warning{
+.warning{
     font-size: 0.85rem;
     font-weight: 600;
     color: red;
@@ -211,9 +214,4 @@ body{
     margin-top: 5%;
     padding: 20px;
     border-radius: 10px;
-}
-
-/*EXTRA*/
-.left-section .js-svg{
-    z-index: 3;
 }
