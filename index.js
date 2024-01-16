@@ -27,7 +27,7 @@ signUpOption.addEventListener('click', () => {
 
 logInOption.addEventListener('click', () => {
 
-    gsap.to(jsLogo, {x: 600, duration: 3})
+    gsap.to(jsLogo, {x: 600, duration: 3});
     if(!logInOption.classList.contains('toggle-btn'))
     {
         signUpOption.classList.remove('toggle-btn');
@@ -39,7 +39,7 @@ logInOption.addEventListener('click', () => {
 });
 
 
-const inputs = document.querySelectorAll('input');
+const inputs = document.querySelectorAll('input.signup-input');
 
 inputs.forEach(input => {
     input.addEventListener('keydown', () => {
@@ -72,11 +72,17 @@ function validateForm(){
     usernameValidation();
     passwordValidation();
     confirmPasswordValidation();
+    console.log(validateFields);
+    console.log(validateName);
+    console.log(validateEmail);
+    console.log(validateUserName);
+    console.log(validatePassword);
+    console.log(confirmPassword);
 
-    if(validateFields && validateName && validateEmail && validateUserName && validatePassword && confirmPassword)
+    if(validateFields && validateName && validateEmail && validateUserName && validatePassword  && confirmPassword)
     {
-        localStorage.setItem('email', emailInput.value);
-        localStorage.setItem('password', passwordInput.value)
+        localStorage.setItem('email', `${emailInput.value}`);
+        localStorage.setItem('password', `${passwordInput.value}`);
         validationBoolean = true;
     }
     else 
@@ -87,16 +93,20 @@ function validateForm(){
 
 let validationBooleanLogIn = false;
 let validateFieldsLogIn, validateEmailLogIn, validatePassLogIn;
-const emailLogInWarning = document.querySelector('#emaillogin_warning');
-const passwordLogInWarning = document.querySelector('#passwordlogin_warning');
+const emailLogInWarning = document.querySelector('.emaillogin_warning');
+const passwordLogInWarning = document.querySelector('.passwordlogin_warning');
 const emailLogInInput = document.querySelector('#email_login');
 const passwordLogInInput = document.querySelector('#password_login');
 const warningMessage = document.querySelector('.warning');
 
+emailLogInInput.addEventListener('keydown', () => {warningCSSRemoval(emailLogInWarning, emailLogInInput)});
+passwordLogInInput.addEventListener('keydown', () => {warningCSSRemoval(passwordLogInWarning, passwordLogInInput)});
+
 function validateFormLogIn(){
     checkForEmptyFieldsLogIn();
+    inputsLogInValidation();
 
-    if(validateFieldsLogIn)
+    if(validateFieldsLogIn && validateEmailLogIn && validatePassLogIn)
         validationBooleanLogIn = true;
     else
         validationBooleanLogIn = false;
@@ -124,12 +134,12 @@ function checkForEmptyFieldsLogIn(){
 }
 
 function inputsLogInValidation(){
-    if(emailLogInInput.value === localStorage.getItem('email') && passwordLogInInput.value === localStorage.getItem('password'))
+    if(`${emailLogInInput.value}` === localStorage.getItem('email') && `${passwordLogInInput.value}` === localStorage.getItem('password'))
     {
         validateEmailLogIn = true;
         validatePassLogIn = true;
     }
-    else
+    else if((`${emailLogInInput.value}` !== localStorage.getItem('email') || `${passwordLogInInput.value}` !== localStorage.getItem('password')) && validateFieldsLogIn === true)
     {
         warningMessage.innerText = 'Email or password is incorrect';
         warningMessage.style.display = 'block';
@@ -195,8 +205,7 @@ function removeWarning(input){
     else if(input.id === 'password')
         warningCSSRemoval(passwordWarning, input);
     else if(input.id === 'confirm_password')
-        warningCSSRemoval(confirmPassWarning, input);
-    
+        warningCSSRemoval(confirmPassWarning, input);    
 }
 
 //FULL NAME VALIDATION
@@ -311,6 +320,10 @@ function emailValidation(){
         validateEmail = false;
         emailWarning.innerText = ' The email must include a username before the \'@gmail.com\' domain."';
         warningCSSChange(emailWarning, emailInput);
+    }
+    else
+    {
+        validateEmail = true;
     }
 }
 
