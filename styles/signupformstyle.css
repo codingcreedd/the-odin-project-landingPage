@@ -215,3 +215,39 @@ body{
     padding: 20px;
     border-radius: 10px;
 }
+
+/*SIGN UP POP UP DIV*/
+.signup-complete-popup-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 101vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    display: none;
+}
+
+.signup-complete-popup-container .inner-popup-div{
+    width: 25%;
+    height: 25%;
+    background: lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 4rem;
+    font-weight: 900;
+    text-align: center;
+}
+
+.signup-complete-popup-container .inner-popup-div span{
+    display: inline;
+    color: var(--sign-up-color);
+    margin-bottom: 20px;
+}
