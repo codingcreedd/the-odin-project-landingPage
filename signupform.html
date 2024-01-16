@@ -22,7 +22,7 @@
 
     <div class="right-section">
         <div class="form-div">
-            <nav>
+            <nav class="nav-div">
                 <button class="register">Sign up</button>
                 <button class="log-in">Log in</button>
             </nav>
@@ -30,19 +30,19 @@
             <div class="signup-form">
                 <form action="" method="" onsubmit="return validateForm()" novalidate>
                     <input type="text" placeholder="Full name" name="full_name" id="full_name" required maxlength="25">
-                    <span class="warning name_warning" style="display: none;"></span>
+                    <span class=" name_warning" style="display: none;"></span>
 
                     <input type="email" placeholder="Email" name="email" id="email" required>
-                    <span class="warning email_warning" style="display: none;"></span>
+                    <span class=" email_warning" style="display: none;"></span>
 
                     <input type="text" placeholder="Username" name="username" id="username" required maxlength="40">
-                    <span class="warning username_warning" style="display: none;"></span>
+                    <span class=" username_warning" style="display: none;"></span>
 
                     <input type="password" placeholder="Password" name="password" id="password" required minlength="8">
-                    <span class="warning password_warning" style="display: none;"></span>
+                    <span class=" password_warning" style="display: none;"></span>
 
                     <input type="password" placeholder="Confirm Password" name="confirm_password" id="confirm_password" required>
-                    <span class="warning confirm_pass_warning" style="display: none;"></span>
+                    <span class=" confirm_pass_warning" style="display: none;"></span>
 
                     <p>
                         By creating an account, you agree to our <span>terms of service</span> and <span>privacy policy</span>. We prioritize the security 
@@ -56,7 +56,16 @@
             </div>
 
             <div class="login-form" style="display: none;">
+                <form action="" method="" onsubmit="return validateFormLogIn()" novalidate>
+                    <span class="warning" style="display: none;"></span>
+                    <input type="email" placeholder="Email" name="email" id="email_login" required>
+                    <span class="emaillogin_warning" style="display: none;"></span>
 
+                    <input type="password" placeholder="Password" name="password" id="password_login" required minlength="8">
+                    <span class="passwordlogin_warning" style="display: none;"></span>
+
+                    <button type="submit">Log in</button>
+                </form>
             </div>
         </div>
     </div>

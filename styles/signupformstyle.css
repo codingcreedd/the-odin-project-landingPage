@@ -27,7 +27,7 @@ body{
 .left-section{
     background: var(--primary-color);
     width: 50vw;
-    min-height: 100vh;
+    min-height: 101vh;
     clip-path: polygon(50% 0%, 100% 0, 85% 100%, 0 100%, 0 0);
     position: relative;
     display: flex;
@@ -93,9 +93,11 @@ body{
     display: flex;
     gap: 2%;
     height: 50px;
+    width: 100%;
     border-bottom-color: var(--primary-color);
     border-bottom-width: 2px;
     border-bottom-style: solid;
+    transition: 0.5s ease;
 }
 
 .right-section nav button{
@@ -106,15 +108,14 @@ body{
     background: transparent;
 }
 
-
+.right-section nav button:hover{
+    border: 2px solid var(--primary-color);
+}
 
 .right-section nav .toggle-btn{
     border-bottom: 2px solid var(--primary-color);
 }
 
-.right-section nav button:hover{
-    border: 2px solid var(--primary-color);
-}
 
 .toggle-btn{
     border: 2px solid var(--primary-color);
@@ -122,7 +123,8 @@ body{
 
 /*---------------SIGN UP FORM--------------------*/
 
-.signup-form form{
+.signup-form form,
+.login-form form{
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -132,7 +134,12 @@ body{
     margin-top: 30px;
 }
 
-.signup-form form > input{
+.login-form form input:nth-child(2){
+    margin-top: 17%;
+}
+
+.signup-form form > input,
+.login-form form > input{
     border: 1px solid var(--primary-color);
     box-shadow: 0 0 1px 2px rgba(0,0,0,0.5);
     border-radius: 10px;
@@ -144,12 +151,14 @@ body{
     transition: 0.5s ease;
 }
 
-.signup-form form > input::placeholder{
+.signup-form form > input::placeholder,
+.login-form form > input::placeholder{
     color: var(--primary-color);
     opacity: 0.8;
 }
 
-.signup-form form > input:hover{
+.signup-form form > input:hover,
+.login-form form > input:hover{
     transform: translateY(-3px);
 }
 
@@ -168,7 +177,8 @@ body{
     color: var(--sign-up-color);
 }
 
-.signup-form form button{
+.signup-form form button,
+.login-form form button{
     width: 50%;
     max-width: 50%;
     border: none;
@@ -185,11 +195,25 @@ body{
 
 
 /*VALIDATION*/
-.warning,
 .name-warning,
 .email-warning,
 .username-warning,
 .password-warning{
     font-size: 0.8rem;
     color: red;
+}
+
+.login-form .warning{
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: red;
+    box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.5);
+    margin-top: 5%;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/*EXTRA*/
+.left-section .js-svg{
+    z-index: 3;
 }

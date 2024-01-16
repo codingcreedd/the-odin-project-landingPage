@@ -1,5 +1,5 @@
 const jsLogo = document.querySelector('.js-svg');
-gsap.to(jsLogo, {x: 20, y:-20, repeat: -1, duration: 1, yoyo:true, ease: "elastic"});
+gsap.to(jsLogo, {x: 20, duration: 1, ease: "bounce"});
 
 //FORM PAGE-----------------------------------------------------//
 
@@ -10,23 +10,31 @@ const logInForm = document.querySelector('.login-form');
 
 signUpOption.classList.add('toggle-btn');
 
+const navigationDiv = document.querySelector('.nav-div');
+
 signUpOption.addEventListener('click', () => {
+    gsap.to(jsLogo, {x:0, duration: 3});
     if(!signUpOption.classList.contains('toggle-btn'))
     {
         logInOption.classList.remove('toggle-btn');
         signUpOption.classList.add('toggle-btn');
         signUpForm.style.display = 'block';
         logInForm.style.display = 'none';
+        navigationDiv.classList.remove('toggle-log-in');
     }
 });
 
+
 logInOption.addEventListener('click', () => {
+
+    gsap.to(jsLogo, {x: 600, duration: 3})
     if(!logInOption.classList.contains('toggle-btn'))
     {
         signUpOption.classList.remove('toggle-btn');
         logInOption.classList.add('toggle-btn');
         signUpForm.style.display = 'none';
         logInForm.style.display = 'block';
+        navigationDiv.classList.add('toggle-log-in');
     }
 });
 
@@ -53,19 +61,91 @@ const passwordInput = document.querySelector('#password');
 const confirmPassInput = document.querySelector('#confirm_password');
 
 
-let validationBoolean = true;
-let validateFields, validateName, b3, b4, b5;
+let validationBoolean = false;
+let validateFields, validateName, validateEmail, validateUserName, validatePassword, confirmPassword;
 
+//MAIN VALIDATION FORM FUNCTION
 function validateForm(){
     checkForEmptyFields();
     validateFullName();
+    emailValidation();
+    usernameValidation();
+    passwordValidation();
+    confirmPasswordValidation();
 
-    if(validateFields && validateName)
+    if(validateFields && validateName && validateEmail && validateUserName && validatePassword && confirmPassword)
+    {
+        localStorage.setItem('email', emailInput.value);
+        localStorage.setItem('password', passwordInput.value)
         validationBoolean = true;
+    }
     else 
         validationBoolean = false;
 
     return validationBoolean;
+}
+
+let validationBooleanLogIn = false;
+let validateFieldsLogIn, validateEmailLogIn, validatePassLogIn;
+const emailLogInWarning = document.querySelector('#emaillogin_warning');
+const passwordLogInWarning = document.querySelector('#passwordlogin_warning');
+const emailLogInInput = document.querySelector('#email_login');
+const passwordLogInInput = document.querySelector('#password_login');
+const warningMessage = document.querySelector('.warning');
+
+function validateFormLogIn(){
+    checkForEmptyFieldsLogIn();
+
+    if(validateFieldsLogIn)
+        validationBooleanLogIn = true;
+    else
+        validationBooleanLogIn = false;
+
+    return validationBooleanLogIn;
+}
+
+
+//LOG IN FORM VALIDATIONS FUNCTIONS
+function checkForEmptyFieldsLogIn(){
+    if(emailLogInInput.value === ''){
+        emailLogInWarning.innerText = 'Enter your email';
+        warningCSSChange(emailLogInWarning, emailLogInInput);
+        validateFieldsLogIn = false;
+    }
+
+    if(passwordLogInInput.value === ''){
+        passwordLogInWarning.innerText = 'Enter your password';
+        warningCSSChange(passwordLogInWarning, passwordLogInInput);
+        validateFieldsLogIn = false;
+    }
+
+    if(emailLogInInput.value !== '' && passwordLogInInput.value !== '')
+        validateFieldsLogIn = true;
+}
+
+function inputsLogInValidation(){
+    if(emailLogInInput.value === localStorage.getItem('email') && passwordLogInInput.value === localStorage.getItem('password'))
+    {
+        validateEmailLogIn = true;
+        validatePassLogIn = true;
+    }
+    else
+    {
+        warningMessage.innerText = 'Email or password is incorrect';
+        warningMessage.style.display = 'block';
+    }
+}
+
+//SIGN UP FORM VALIDATIONS FUNCTIONS
+
+function warningCSSChange(warningBlock, inputType){
+    warningBlock.style.display = 'block';
+    inputType.style.cssText = 'border: 1px solid red';
+}
+
+function warningCSSRemoval(warningBlock, inputType){
+    warningBlock.style.display = 'none';
+    inputType.style.cssText = "border: 1px solid var(--primary-color)";
 }
 
 function checkForEmptyFields(){
@@ -84,53 +164,39 @@ function checkForEmptyFields(){
 function changeInputField(input){
     if(input.id === 'full_name'){
         nameWarning.innerText = 'Enter your full name';
-        nameWarning.style.display = 'block';
-        input.style.cssText = "border: 1px solid red";
+        warningCSSChange(nameWarning, input);
     }
     else if(input.id === 'email'){
         emailWarning.innerText = 'Enter your email';
-        emailWarning.style.display = 'block';
-        input.style.cssText = "border: 1px solid red";
+        warningCSSChange(emailWarning, input);
     }else if(input.id === 'username'){
         usernameWarning.innerText = 'Enter your username';
-        usernameWarning.style.display = 'block';
-        input.style.cssText = "border: 1px solid red";
+        warningCSSChange(usernameWarning, input);
     }else if(input.id === 'password'){
         passwordWarning.innerText = 'Enter your password';
-        passwordWarning.style.display = 'block';
-        input.style.cssText = "border: 1px solid red";
+        warningCSSChange(passwordWarning, input);
     }else if(input.id === 'confirm_password'){
         if(document.querySelector('#password').value != '')
-            confirmPassWarning.innerText = 'Re-Enter your password';
-        else
             confirmPassWarning.innerText = 'Enter your password';
-    
-        
-            confirmPassWarning.style.display = 'block';
-            input.style.cssText = "border: 1px solid red";
+
+            warningCSSChange(confirmPassWarning, input);
     }
 
 
 }
 
 function removeWarning(input){
-    if(input.id === 'full_name'){
-        nameWarning.style.display = 'none';
-        input.style.cssText = "border: 1px solid var(--primary-color)";
-    }
-    else if(input.id === 'email'){
-        emailWarning.style.display = 'none';
-        input.style.cssText = "border: 1px solid var(--primary-color)";
-    }else if(input.id === 'username'){
-        usernameWarning.style.display = 'none';
-        input.style.cssText = "border: 1px solid var(--primary-color)";
-    }else if(input.id === 'password'){
-        passwordWarning.style.display = 'none';
-        input.style.cssText = "border: 1px solid var(--primary-color)";
-    }else if(input.id === 'confirm_password'){
-            confirmPassWarning.style.display = 'none';
-            input.style.cssText = "border: 1px solid var(--primary-color)";
-    }
+    if(input.id === 'full_name')
+        warningCSSRemoval(nameWarning, input);
+    else if(input.id === 'email')
+        warningCSSRemoval(emailWarning, input);
+    else if(input.id === 'username')
+        warningCSSRemoval(usernameWarning, input);
+    else if(input.id === 'password')
+        warningCSSRemoval(passwordWarning, input);
+    else if(input.id === 'confirm_password')
+        warningCSSRemoval(confirmPassWarning, input);
+    
 }
 
 //FULL NAME VALIDATION
@@ -140,15 +206,13 @@ function validateFullName(){
     if(fullNameString.length < 3 && fullNameString.length >= 1){
         validateName = false;
         nameWarning.innerText = 'Name must be at least 3 characters long.'
-        nameWarning.style.display = 'block';
-        fullNameInput.style.cssText = 'border: 1px solid red;';
+        warningCSSChange(nameWarning, fullNameInput);
     }
     else if(!(isAlphabetic(fullNameString)) && fullNameString.length >= 1)
     {
         validateName = false;
         nameWarning.innerText = 'Name must contain characters only.';
-        nameWarning.style.display = 'block';
-        fullNameInput.style.cssText = 'border: 1px solid red;';
+        warningCSSChange(nameWarning, fullNameInput);
     }
     else
         validateName = true;
@@ -218,3 +282,151 @@ function fixWhiteSpaces(inputString)
     inputString = modifiedString;
     fullNameInput.value = inputString;
 }
+
+//Email Validation
+function emailValidation(){
+    const emailString = String(emailInput.value);
+    let whiteSpaceCount = 0;
+
+    //check for whitespaces
+    for(let i = 0; i < emailString.length; i++)
+    {
+        if(isWhitespace(emailString[i]))
+            whiteSpaceCount++;
+    }
+
+    if(whiteSpaceCount > 0){
+        validateEmail = false;
+        emailWarning.innerText = 'Invalid email';
+        warningCSSChange(emailWarning, emailInput);
+    }
+    else if(!emailString.includes("@gmail.com") && emailString.length > 0)
+    {
+        validateEmail = false;
+        emailWarning.innerText = 'Email must include @gmail.com';
+        warningCSSChange(emailWarning, emailInput);
+    }
+    else if(emailString.includes("@gmail.com") && emailString.length === 10)
+    {
+        validateEmail = false;
+        emailWarning.innerText = ' The email must include a username before the \'@gmail.com\' domain."';
+        warningCSSChange(emailWarning, emailInput);
+    }
+}
+
+//username validations
+function usernameValidation(){
+    const usernameString = String(usernameInput.value);
+    let whiteSpaceCount = 0, specialCharactersCount = 0;;
+
+    //check for whitespaces and special Characters
+    for(let i = 0; i < usernameString.length; i++)
+    {
+        if(isWhitespace(usernameString[i]))
+            whiteSpaceCount++;
+
+        if(isSpecialCharacter(usernameString[i]) && usernameString[i] !== '.' && usernameString !== '_')
+            specialCharactersCount++;
+    }
+
+    if(usernameString.length < 5 && usernameString.length >= 1)
+    {   
+        validateUserName = false;
+        usernameWarning.innerText = 'Username must be at least 5 characters long';
+        warningCSSChange(usernameWarning, usernameInput);
+    }
+    else if(usernameString.length > 20)
+    {
+        validateUserName = false;
+        usernameWarning.innerText = 'Username must be at most 20 characters long';
+        warningCSSChange(usernameWarning, usernameInput);
+    }
+    else if(whiteSpaceCount > 0){
+        validateUserName = false;
+        usernameWarning.innerText = 'Username must not contain whitespaces';
+        warningCSSChange(usernameWarning, usernameInput);
+    }
+    else if(specialCharactersCount > 0){
+        validateUserName = false;
+        usernameWarning.innerText = 'Only . and _ are accepted';
+        warningCSSChange(usernameWarning, usernameInput);
+    }
+    else
+    {
+        validateUserName = true;
+    }
+}
+
+//password validation
+function passwordValidation(){
+    const passwordString = String(passwordInput.value);
+    let whiteSpaceCount = 0, numberCount = 0, specialCharactersCount = 0;
+
+    //check for whitespaces, numbers and specialCharacters
+    for(let i = 0; i < passwordString.length; i++)
+    {
+        if(isWhitespace(passwordString[i]))
+            whiteSpaceCount++;
+
+        if(isNumber(passwordString[i]))
+            numberCount++;
+
+        if(isSpecialCharacter(passwordString[i]))
+            specialCharactersCount++;
+    }
+
+    if(passwordString.length < 10 && passwordString.length >= 1)
+    {   
+        validatePassword = false;
+        passwordWarning.innerText = 'Your password must be at least 10 characters long';
+        warningCSSChange(passwordWarning, passwordInput);
+    }
+    else if(whiteSpaceCount > 0)
+    {
+        validatePassword = false;
+        passwordWarning.innerText = 'Your password must not contain any whitespaces';
+        warningCSSChange(passwordWarning, passwordInput);
+    }
+    else if(numberCount < 1 && passwordString.length >= 1)
+    {   
+        validatePassword = false;
+        passwordWarning.innerText = 'Your password must contain at least one number';
+        warningCSSChange(passwordWarning, passwordInput);
+    }
+    else if(specialCharactersCount < 1 && passwordString.length >= 1)
+    {
+        validatePassword = false;
+        passwordWarning.innerText = 'Your password must contain at least one special character';
+        warningCSSChange(passwordWarning, passwordInput);
+    }
+    else
+    {
+        validatePassword = true;
+    }
+    
+}
+
+function confirmPasswordValidation(){
+    if(confirmPassInput.value === passwordInput.value){
+        confirmPassword = true;
+    }
+    else if(confirmPassInput.value !== '' && passwordInput.value === '')
+    {
+        confirmPassword = false;
+        confirmPassWarning.innerText = 'Enter your password first';
+        warningCSSChange(confirmPassWarning, confirmPassInput);
+    }
+    else if(confirmPassInput.value === '' && validatePassword === true)
+    {
+        confirmPassword = false;
+        confirmPassWarning.innerText = 'Re-enter password';
+        warningCSSChange(confirmPassWarning, confirmPassInput);
+    }
+    else if(confirmPassInput.value !== passwordInput.value && validatePassword === true)
+    {
+        confirmPassword = false;
+        confirmPassWarning.innerText = 'Passwords don\'t match';
+        warningCSSChange(confirmPassWarning, confirmPassInput);
+    }
+}
+
