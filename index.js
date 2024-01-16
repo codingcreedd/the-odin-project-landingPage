@@ -60,6 +60,7 @@ const usernameInput = document.querySelector('#username');
 const passwordInput = document.querySelector('#password');
 const confirmPassInput = document.querySelector('#confirm_password');
 
+const popUpContainer = document.querySelector('.signup-complete-popup-container');
 
 let validationBoolean = false;
 let validateFields, validateName, validateEmail, validateUserName, validatePassword, confirmPassword;
@@ -72,18 +73,18 @@ function validateForm(){
     usernameValidation();
     passwordValidation();
     confirmPasswordValidation();
-    console.log(validateFields);
-    console.log(validateName);
-    console.log(validateEmail);
-    console.log(validateUserName);
-    console.log(validatePassword);
-    console.log(confirmPassword);
 
     if(validateFields && validateName && validateEmail && validateUserName && validatePassword  && confirmPassword)
     {
         localStorage.setItem('email', `${emailInput.value}`);
         localStorage.setItem('password', `${passwordInput.value}`);
-        validationBoolean = true;
+        popUpContainer.style.display = 'flex';
+        setTimeout(() => {
+            popUpContainer.style.display = 'none';
+        }, 2000);
+        setTimeout(() => {
+            validationBoolean = true;
+        }, 3000);
     }
     else 
         validationBoolean = false;
